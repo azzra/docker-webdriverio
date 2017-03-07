@@ -1,22 +1,25 @@
-FROM alpine:3.5
-
-ENV SELENIUM_STANDALONE_VERSION latest
+FROM alpine:latest
 
 RUN apk add --no-cache \
     xvfb \
     dbus \
     openjdk8-jre \
     ttf-freefont \    
-    firefox-esr \
     nodejs \
     python \
     make \
-    g++
+    g++ 
+
+ENV WDIO_TESTING_FRAMEWORKS wdio-mocha-framework wdio-jasmine-framework
+ENV BROWSERS firefox-esr
+
+RUN apk add --no-cache $BROWSERS
+RUN npm install -g $WDIO_TESTING_FRAMEWORKS
 
 RUN npm install -g \
-    selenium-standalone@$SELENIUM_STANDALONE_VERSION \
     webdriverio \
-    wdio-mocha-framework \
+    selenium-standalone \
+    wdio-selenium-standalone-service \
     && selenium-standalone install
 
 COPY ./xvfb-run /usr/bin/xvfb-run
