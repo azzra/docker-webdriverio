@@ -1,4 +1,6 @@
-# DOCKER WEBDRIVER IO
+# DOCKER WEBDRIVERIO
+
+[![Build Status](https://travis-ci.org/azzra/docker-webdriverio.svg?branch=master)](https://travis-ci.org/azzra/docker-webdriverio)
 
 Execute [WebdriverIO](http://webdriver.io/) in a Docker container.
 
@@ -18,5 +20,4 @@ docker build -t azzra/wdio .
 docker run --rm -it -v $(pwd):/tests --net=host azzra/wdio
 ```
 
-> Usage of `--net=host` is only required if Selenium is on your localhost. Without, the container will resolve localhost as itslef.
-
+> Usage of `--net=host` is only required if Selenium is on your localhost. Without, the container will resolve localhost as itself.  
