@@ -10,11 +10,15 @@ RUN apk add --no-cache \
 RUN npm install -g \
     webdriverio 
 
-
-ENV WDIO_TESTING_FRAMEWORKS wdio-mocha-framework wdio-jasmine-framework
-RUN npm install -g $WDIO_TESTING_FRAMEWORKS
+ENV FRAMEWORKS wdio-mocha-framework wdio-jasmine-framework
+ENV REPORTERS wdio-dot-reporter wdio-spec-reporter
+RUN npm install -g $FRAMEWORKS $REPORTERS
 
 WORKDIR /tests
 
 COPY ./docker-entrypoint.sh /root/scripts/docker-entrypoint.sh
+
+ENV SELENIUM_HOST localhost
+ENV SELENIUM_PORT 4444
+
 ENTRYPOINT ["/root/scripts/docker-entrypoint.sh"]

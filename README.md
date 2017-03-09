@@ -14,4 +14,10 @@ It needs a [Selenium](http://www.seleniumhq.org/) instance running, you could ha
 docker run --rm -it -v $(pwd):/tests --net=host azzra/wdio
 ```
 
-> Usage of `--net=host` is only required if Selenium is on your localhost. Without, the container will resolve localhost as itself.  
+> Usage of `--net=host` is only required if Selenium is on your localhost. Without, the container will resolve localhost as itself. 
+
+
+#### I need a shell !
+```sh
+docker run -i -v $(pwd):/tests --entrypoint sh -t azzra/wdio
+```
