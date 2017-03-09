@@ -8,12 +8,6 @@ Execute [WebdriverIO](http://webdriver.io/) in a Docker container.
 
 It needs a [Selenium](http://www.seleniumhq.org/) instance running, you could have a look here: [elgalu/docker-selenium](https://github.com/elgalu/docker-selenium/).
 
-### Build
-
-```sh
-docker build -t azzra/wdio .
-```
-
 ### Run
 
 ```sh
