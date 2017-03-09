@@ -1,8 +1,7 @@
 #!/bin/sh
 
-xvfb-run selenium-standalone start 2>/dev/null &
-
-until wget "http://localhost:4444/selenium-server/driver?cmd=getLogMessages" -O /dev/null 2>/dev/null; do
+until wget "http://localhost:4444/grid/console" -O /dev/null 2>/dev/null; do
+    echo "Waiting..."
     sleep 0.5
 done
 

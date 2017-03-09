@@ -1,30 +1,20 @@
-FROM alpine:latest
+FROM alpine:3.5
+MAINTAINER Azzra <azzra@users.noreply.github.com>
 
 RUN apk add --no-cache \
-    xvfb \
-    dbus \
-    openjdk8-jre \
-    ttf-freefont \    
-    nodejs \
     python \
     make \
-    g++ 
-
-ENV WDIO_TESTING_FRAMEWORKS wdio-mocha-framework wdio-jasmine-framework
-ENV BROWSERS firefox-esr
-
-RUN apk add --no-cache $BROWSERS
-RUN npm install -g $WDIO_TESTING_FRAMEWORKS
+    g++ \ 
+    nodejs
 
 RUN npm install -g \
-    webdriverio \
-    selenium-standalone \
-    wdio-selenium-standalone-service \
-    && selenium-standalone install
+    webdriverio 
 
-COPY ./xvfb-run /usr/bin/xvfb-run
 
-WORKDIR /jstests
-COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+ENV WDIO_TESTING_FRAMEWORKS wdio-mocha-framework wdio-jasmine-framework
+RUN npm install -g $WDIO_TESTING_FRAMEWORKS
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+WORKDIR /tests
+
+COPY ./docker-entrypoint.sh /root/scripts/docker-entrypoint.sh
+ENTRYPOINT ["/root/scripts/docker-entrypoint.sh"]
